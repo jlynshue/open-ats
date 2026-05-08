@@ -1,0 +1,37 @@
+Senior Product Designer — Stelvio Logistics
+
+About Stelvio
+Stelvio Logistics builds the operating system for cross-border freight. Our shippers move $4.5B of goods through our platform every year. Design touches every part of the experience: dispatcher consoles, driver mobile apps, customer dashboards, and the internal tooling our operations team lives in. We're hiring a Senior Product Designer to own end-to-end design for our Dispatcher Console product line.
+
+What you'll do
+- Lead end-to-end design for the Dispatcher Console, from research through high-fidelity ship
+- Run discovery research with dispatchers, drivers, and operations specialists; translate findings into product strategy
+- Build and maintain the design system shared across our 4 product lines
+- Pair daily with two product managers and four engineers; present in weekly Design Critique
+- Ship complex multi-step workflows that balance information density with clarity
+- Mentor two junior designers; review their work weekly
+
+Requirements
+- 6+ years of product design experience, with at least 3 years on B2B / operational software
+- Demonstrated ability to design data-dense interfaces (dashboards, queues, complex tables)
+- Fluency in Figma; comfort prototyping interactive flows
+- Strong written communication; you've authored design briefs that aligned cross-functional teams
+- Experience running and synthesising user research; familiarity with both qualitative and quantitative methods
+- Comfort working closely with engineering, including reviewing implementation in staging
+- Portfolio that shows shipped work — not concept-only projects
+
+Bonus points
+- Experience with logistics, supply chain, or operations-heavy domains
+- Background in motion design or micro-interaction craft
+- Front-end coding ability (React, CSS) sufficient to prototype directly
+- Experience leading design-system stewardship at scale
+- Prior work in safety-critical or workflow-critical environments
+
+What we offer
+- Competitive base + equity
+- Hybrid in New York or Toronto; remote-friendly for the right candidate
+- Comprehensive health, dental, vision, and 401(k) match
+- $2,000 annual learning budget; conference attendance encouraged
+- 12 weeks parental leave
+
+Stelvio Logistics is committed to building a diverse, inclusive design team. We strongly encourage applications from underrepresented backgrounds.

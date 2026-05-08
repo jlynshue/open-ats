@@ -1,0 +1,41 @@
+Senior Data Scientist — Lumen Health Analytics
+
+About Lumen Health
+Lumen Health builds AI-powered care navigation tools used by 14 of the top 25 US health systems. Our analytics team turns electronic health record signal into care recommendations that reach 8M patients per year. We are hiring a Senior Data Scientist to lead the next generation of our patient-risk-stratification models.
+
+The role
+You will own one or more model families end-to-end: data engineering, training, evaluation, deployment, and monitoring. Your work will inform clinical decision-making, so rigor matters more than speed. You will partner with clinical informaticists, engineering, and product to translate ambiguous questions into measurable models.
+
+What you'll own
+- Design, train, and evaluate supervised and self-supervised models on de-identified EHR data
+- Lead the redesign of our model evaluation harness; introduce calibration, fairness, and subgroup performance metrics
+- Build feature pipelines in Python (pandas, PySpark) that operate on tens of billions of rows
+- Author model cards and clinical-validation reports for FDA submissions
+- Mentor 2-4 junior data scientists; lead our data-science guild's quarterly tech reviews
+- Carry on-call rotation for the production inference platform
+
+Required qualifications
+- 6+ years of professional data science / applied ML experience
+- Strong fundamentals in supervised learning, calibration, and model evaluation
+- Production experience with PyTorch or TensorFlow
+- Fluent Python; SQL strong enough for ad-hoc EHR exploration
+- Track record of shipping models to production (not just notebooks)
+- Excellent technical writing; you've authored published model documentation or papers
+- Comfort with healthcare data privacy and HIPAA constraints
+
+Preferred / Nice to have
+- PhD in computer science, statistics, biostatistics, or a related quantitative field
+- Experience with FDA Software-as-a-Medical-Device pathways
+- Background in causal inference or fairness research
+- Deep familiarity with FHIR or OMOP common data models
+- Prior leadership of an analytics or data-science team
+- Open-source contributions to ML tooling (mlflow, weights-and-biases, scikit-learn, etc.)
+
+Compensation and benefits
+- Competitive base + equity + performance bonus
+- Comprehensive health, dental, vision, and 401(k) match
+- Hybrid; HQ in Boston with offices in San Francisco and Toronto
+- Generous parental leave and family-formation benefits
+- $3,500 annual learning and conference budget
+
+Lumen Health is an equal-opportunity employer.
