@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added (Sprint 1 — Markdown Resume Parser)
+- `src/open_ats/models.py` — Pydantic v2 entity definitions per PRD §7 (Resume, Contact, Section, ExperienceEntry, EducationEntry, JobDescription, Keyword, ScanResult, Score, CategoryScore, Recommendation, AuditEntry, ScoringConfig, plus enums)
+- `src/open_ats/parsers/base.py` — `Parser` Protocol, `ResumeParseError`, `UnsupportedFormatError`, shared regex helpers (email/phone/linkedin/github extraction), `classify_section_heading` heading→`SectionType` classifier
+- `src/open_ats/parsers/markdown_parser.py` — `MarkdownParser` with heading-driven section detection, contact extraction, experience/education/skills extraction, ParserWarning emission for missing email/short resumes/invalid URLs
+- `src/open_ats/parsers/__init__.py` — `parse_resume(path)` extension dispatcher (`.md` and `.markdown` wired)
+- `tests/unit/test_markdown_parser.py` — 46 tests covering all FR-1.1 acceptance criteria, edge cases (empty file, malformed email, heading aliases), and determinism
+- 2 new fixtures: `tests/fixtures/resumes/no_email.md`, `tests/fixtures/resumes/minimal.md`
+- `pyproject.toml` — `pydantic[email]` extra (enables `EmailStr` validation via `email-validator`)
+
+### Changed
+- Test-fixture emails: `@example.test` → `@example.com` (email-validator rejects the reserved `.test` TLD)
+- README "Phase 1 (MVP)" status: Markdown parsing now checked off
+
+### Fixed
+- `.gitignore`: root-anchor `/resumes/` and `/job_descriptions/` (was matching `tests/fixtures/resumes/` and `tests/fixtures/job_descriptions/`, silently dropping all 6 fixtures from Sprint 0's PR). Sprint 1 brings the recovered fixtures along.
+
 ### Added (Sprint 0 — Spec, Scaffold, Decisions)
 - `LICENSE` (MIT) at repo root; matches `pyproject.toml`
 - Full PRD (`docs/PRD.md`): Given/When/Then acceptance criteria for FR-1..FR-10, Pydantic v2 entity definitions, regex patterns for quantification detection, word lists (≥50 strong action verbs / ≥30 weak verbs / ≥15 passive markers / ≥10 hedging phrases), scoring formulas with worked examples, JSON/HTML report schemas, audit-trail SQLite schema, role-level weight presets

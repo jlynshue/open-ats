@@ -1,0 +1,46 @@
+# Avery Chen
+
+avery.chen.entry@example.com | (555) 123-0001 | linkedin.com/in/averychen-fixture | github.com/averychen-fixture
+San Francisco, CA
+
+## Summary
+
+Recent computer science graduate with internship experience in Python web development and a strong foundation in data structures, algorithms, and modern web frameworks. Eager to contribute to a collaborative engineering team building production software.
+
+## Education
+
+**B.S. Computer Science** — University of California, Berkeley
+2022 – 2026 | GPA: 3.7 / 4.0
+Relevant coursework: Data Structures, Algorithms, Operating Systems, Databases, Software Engineering, Machine Learning Foundations
+
+## Experience
+
+**Software Engineering Intern** — Acme Cloud, Remote
+June 2025 – August 2025
+- Built a Python REST API endpoint using FastAPI and PostgreSQL that reduced average customer-onboarding time from 6 minutes to under 2 minutes
+- Wrote 35 unit tests achieving 88% coverage on the new module using pytest
+- Collaborated with 4 senior engineers in 2-week agile sprints, presenting work at sprint demos
+- Triaged and fixed 12 customer-reported bugs in the billing service
+
+**Undergraduate Research Assistant** — UC Berkeley NLP Lab
+January 2025 – May 2025
+- Implemented data preprocessing pipelines in Python and pandas for a 50,000-document text classification study
+- Co-authored a poster accepted to the undergraduate research symposium
+
+## Projects
+
+**StudyBuddy** (github.com/averychen-fixture/studybuddy)
+- Full-stack flashcard app built with React, TypeScript, and Express
+- 200+ active users from on-campus launch; deployed to Vercel
+- Implemented spaced-repetition algorithm based on the SM-2 specification
+
+**OpenWeather CLI** (github.com/averychen-fixture/openweather-cli)
+- Python command-line tool wrapping the OpenWeatherMap API
+- Published to PyPI; 500+ downloads in the first month
+
+## Skills
+
+**Languages:** Python, TypeScript, JavaScript, SQL, Java, Go (learning)
+**Frameworks:** FastAPI, Flask, React, Express, pytest
+**Tools:** Git, Docker, PostgreSQL, Redis, AWS (S3, EC2), Linux
+**Soft skills:** Clear written communication, fast learner, collaborative
