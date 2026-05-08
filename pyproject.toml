@@ -29,7 +29,7 @@ classifiers = [
 
 dependencies = [
     "click>=8.1.0",           # CLI framework
-    "pydantic>=2.0.0",        # Data validation
+    "pydantic[email]>=2.0.0", # Data validation (email-validator for EmailStr)
     "spacy>=3.7.0",           # NLP
     "nltk>=3.8.0",            # NLP
     "python-docx>=1.1.0",     # DOCX parsing

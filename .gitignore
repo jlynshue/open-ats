@@ -56,9 +56,10 @@ coverage.xml
 *.report.json
 *.report.pdf
 
-# User data (resumes, JDs)
-resumes/
-job_descriptions/
+# User data (resumes, JDs) — root-anchored so they don't shadow
+# tests/fixtures/resumes/ and tests/fixtures/job_descriptions/.
+/resumes/
+/job_descriptions/
 examples/user_*
 
 # Logs
