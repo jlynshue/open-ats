@@ -7,12 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Planning
-- Complete Product Requirements Document (PRD)
-- Scoring system design with transparent formulas
-- Testing strategy (unit, integration, E2E, validation)
-- Data model and API design
-- Audit trail specifications
+### Added (Sprint 0 — Spec, Scaffold, Decisions)
+- `LICENSE` (MIT) at repo root; matches `pyproject.toml`
+- Full PRD (`docs/PRD.md`): Given/When/Then acceptance criteria for FR-1..FR-10, Pydantic v2 entity definitions, regex patterns for quantification detection, word lists (≥50 strong action verbs / ≥30 weak verbs / ≥15 passive markers / ≥10 hedging phrases), scoring formulas with worked examples, JSON/HTML report schemas, audit-trail SQLite schema, role-level weight presets
+- `src/open_ats/{parsers,analyzers,scoring,reporting,audit_trail,cli,data}/` package skeleton with stub `__init__.py` per layer
+- `src/open_ats/cli/main.py` click entry point (commands implemented in Sprints 5+)
+- `tests/{unit,integration,e2e,validation,fixtures}/` directory tree + `tests/conftest.py` with path-helper fixtures
+- 3 hand-crafted Markdown resume fixtures (entry, mid, executive) + 3 matching JDs
+- `keyword_databases/_template.yaml` and `keyword_databases/software_engineering.yaml` (~70-entry seed)
+- `.github/workflows/ci.yml` — GitHub Actions: lint (ruff + black), typecheck (mypy), test matrix (Python 3.9–3.12)
+- `.pre-commit-config.yaml` — ruff, black, mypy hooks
+- `.context/sprints/00-contract.md` — negotiated Sprint 0 scope and grading thresholds
+
+### Changed
+- `README.md` — project structure section corrected to `src/open_ats/...` layout; `[PLACEHOLDER]` markers replaced with `MIT` and concrete GitHub org
+- `CLAUDE.md` — project structure section corrected; console-script note added
+- `pyproject.toml` — `[PLACEHOLDER: Confirm license]` comment removed (MIT confirmed); minimum Python bumped from 3.9 → 3.10 (3.9 reached end-of-life Oct 2025 and is no longer a mypy target); ruff config migrated from top-level `select`/`ignore` to `[tool.ruff.lint]` section
+- `.github/workflows/ci.yml` — test matrix dropped 3.9, kept 3.10–3.12
+
+### Planning (carried from prior `[Unreleased]`)
+- Multi-sprint roadmap (S0–S13) mapped to releases v0.2 → v1.0 in `~/.claude/plans/system-instruction-you-are-working-curried-eagle.md`
+- Harness methodology (Planner → Generator → Evaluator) applied per sprint with separate evaluator sessions and concrete grading rubrics
 
 ## [0.1.0] - 2026-05-08
 

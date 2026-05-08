@@ -22,7 +22,7 @@ A comprehensive resume scanner that emulates commercial ATS tools (JobScan, Resu
 pip install open-ats-scanner
 
 # Or install from source
-git clone https://github.com/[ORG]/open-ats.git
+git clone https://github.com/jlynshue/open-ats.git
 cd open-ats
 pip install -e .
 ```
@@ -84,22 +84,23 @@ open-ats compare \
 
 ```
 open-ats/
-├── src/
-│   ├── parsers/           # Resume and JD parsing
-│   ├── analyzers/         # Keyword, quantification, formatting analysis
-│   ├── scoring/           # Scoring engine with transparent formulas
-│   ├── reporting/         # Report generation (JSON, HTML, PDF)
-│   ├── audit_trail/       # Version control and improvement tracking
-│   └── cli/               # Command-line interface
+├── src/open_ats/          # Python package (import root: `open_ats`)
+│   ├── parsers/           # Resume and JD parsing (Markdown, DOCX, PDF, TXT)
+│   ├── analyzers/         # Keyword, quantification, formatting, content quality
+│   ├── scoring/           # Transparent scoring engine
+│   ├── reporting/         # JSON / HTML / PDF report generation
+│   ├── audit_trail/       # Scan history, version control, improvement tracking
+│   ├── cli/               # `open-ats` command-line entry point
+│   └── data/              # Bundled word lists and presets
 ├── tests/
-│   ├── unit/              # Unit tests (80%+ coverage target)
-│   ├── integration/       # Integration tests
-│   ├── e2e/               # End-to-end tests
+│   ├── unit/              # Unit tests (≥80% coverage target)
+│   ├── integration/       # Integration tests across modules
+│   ├── e2e/               # End-to-end CLI tests
+│   ├── validation/        # Golden cases, idempotency, performance, correlation
 │   └── fixtures/          # Sample resumes and job descriptions
-├── docs/                  # Documentation
-├── examples/              # Example resumes, JDs, configs
-├── keyword_databases/     # Industry-specific keyword lists
-└── config/                # Default configuration files
+├── docs/                  # PRD, scoring system, testing strategy, API reference
+├── keyword_databases/     # Industry-specific keyword lists (YAML)
+└── examples/              # Example workflows and sample data (added in Sprint 12)
 ```
 
 ## How It Works
@@ -178,7 +179,7 @@ Areas where we need help:
 
 ## License
 
-[PLACEHOLDER: Choose license - MIT, Apache 2.0, GPL]
+MIT — see [LICENSE](LICENSE).
 
 ## Roadmap
 
@@ -202,8 +203,8 @@ Areas where we need help:
 ## Support
 
 - [Documentation](docs/)
-- [GitHub Issues](https://github.com/[ORG]/open-ats/issues)
-- [Discussions](https://github.com/[ORG]/open-ats/discussions)
+- [GitHub Issues](https://github.com/jlynshue/open-ats/issues)
+- [Discussions](https://github.com/jlynshue/open-ats/discussions)
 
 ## Credits
 

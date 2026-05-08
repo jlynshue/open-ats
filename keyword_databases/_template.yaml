@@ -1,0 +1,33 @@
+# Keyword Database Template
+#
+# Copy this file to `<industry>_keywords.yaml` (e.g. `data_science_keywords.yaml`)
+# and populate. Used by the keyword analyzer (Sprint 5) to score resume↔JD
+# matches with industry-specific awareness.
+#
+# Schema:
+#   metadata: descriptive fields (industry, version, source, last_updated)
+#   hard_skills: technical capabilities (languages, frameworks, tools, methodologies)
+#   soft_skills: non-technical strengths (communication, leadership, etc.)
+#   industry_terms: domain vocabulary (regulations, business concepts, methodologies)
+#   action_verbs: industry-flavored action verbs (optional; the global list lives in src/open_ats/data/action_verbs.yaml)
+#
+# Each entry can be a string OR a mapping with synonyms:
+#   - "Python"
+#   - name: "PostgreSQL"
+#     synonyms: ["postgres", "psql"]
+#
+# Synonyms enable matching variant spellings without inflating the canonical list.
+
+metadata:
+  industry: "<your industry>"
+  version: "0.1.0"
+  source: "Hand-curated from sample job descriptions / industry references"
+  last_updated: "2026-05-08"
+
+hard_skills: []
+
+soft_skills: []
+
+industry_terms: []
+
+action_verbs: []
