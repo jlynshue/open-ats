@@ -257,9 +257,12 @@ def test_parse_text_matches_parse_path(
 
 
 def test_unsupported_format_raises(tmp_path: Path) -> None:
-    """parse_resume() rejects extensions with no registered parser."""
-    fake = tmp_path / "resume.docx"
-    fake.write_bytes(b"not really a docx")
+    """parse_resume() rejects extensions with no registered parser.
+
+    .pdf isn't wired until Sprint 3, so it remains a usable canary here.
+    """
+    fake = tmp_path / "resume.pdf"
+    fake.write_bytes(b"not really a pdf")
     with pytest.raises(UnsupportedFormatError) as excinfo:
         parse_resume(fake)
     assert ".md" in excinfo.value.supported

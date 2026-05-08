@@ -54,7 +54,8 @@ open-ats compare \
 **Phase 1 (MVP) - In Development**
 
 - [x] Resume parsing — Markdown (Sprint 1)
-- [ ] Resume parsing — DOCX, PDF, TXT (Sprints 2–3)
+- [x] Resume parsing — DOCX, TXT (Sprint 2)
+- [ ] Resume parsing — PDF (Sprint 3)
 - [ ] Job description parsing
 - [ ] Keyword matching analysis
 - [ ] Quantification rate calculation
