@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added (Sprint 4 — Job Description Parser)
+- `src/open_ats/parsers/jd_parser.py` — `JdParser` + `parse_job_description(path_or_str)` top-level function. Walks JD lines detecting markdown or plain-text headings against a JD-specific alias map (Requirements / Required / Must have / Qualifications → `requirements`; What you'll do / The role → `responsibilities`; Nice to have / Bonus / Preferred → `preferences`; Benefits dropped). Extracts keyword candidates via rule-based passes: ALL-CAPS acronyms, multi-word title-case phrases, single proper nouns (with sentence-start filtering against a lowercase vocabulary), hyphenated lowercase compounds. Title and company extracted from the first non-empty line via `Title — Company` / `Title at Company` splitters.
+- 2 new JD fixtures: `data_scientist.txt` (healthcare ML role) and `product_designer.txt` (B2B logistics design role) — total now 5 fixtures across SWE / backend / executive / data-science / design.
+- `tests/fixtures/job_descriptions/_golden_keywords.yaml` — hand-annotated true-positive keyword set per fixture. Drives the FR-2 precision-≥80% gate via `test_keyword_precision_per_fixture` and the recall-≥40% sanity check.
+- `tests/unit/test_jd_parser.py` (48 tests) — section split, preferences routing, per-fixture and aggregate keyword precision/recall, title + company extraction, too-short warning, raw-string vs path dispatch, error paths, determinism.
+
+### Decisions
+- **spaCy deferred to Sprint 5.** The plan called for "noun phrases via spaCy"; rule-based extraction is the simplest implementation that meets FR-2's precision-≥80% gate without dragging in a 12 MB model download. Sprint 5's keyword analyzer will introduce spaCy where its synonym normalisation and lemmatisation pay off for *matching*, not candidate generation.
+
+### Changed
+- README "Phase 1 (MVP)" status: Job description parsing checked off; FR-2 marked complete.
+
 ### Added (Sprint 3 — PDF Resume Parser)
 - `src/open_ats/parsers/pdf_parser.py` — `PdfParser` opens `.pdf` via pdfplumber, extracts text page-by-page, raises `ResumeParseError("PDF appears to be image-based; please convert to text-based PDF")` (FR-1.3 verbatim) when extraction yields nothing, otherwise renders text → markdown via the shared heuristic and delegates to `MarkdownParser`.
 - `src/open_ats/parsers/_heuristic.py` — extracted the text→markdown heading/bullet detector out of `txt_parser.py` so PDF and TXT share one implementation. No behavioural change for TXT.

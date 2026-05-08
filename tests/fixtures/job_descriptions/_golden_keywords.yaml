@@ -1,0 +1,148 @@
+# Hand-annotated keyword golden set for the JD parser (FR-2, Sprint 4).
+#
+# Each fixture has a flat list of keywords we consider true positives —
+# real ATS-relevant signals that a resume scanner should be aware of.
+# Comparison is case-insensitive: an extracted candidate is a hit if its
+# casefolded value matches any entry below (also casefolded).
+#
+# Precision rule (Sprint 4 grading threshold #5):
+#   precision = |golden ∩ extracted| / |extracted|  ≥ 0.80
+#
+# Recall sanity (threshold #6):
+#   recall = |golden ∩ extracted| / |golden|  ≥ 0.40
+#
+# Editing principle: keep the bar reasonable. Include real tech terms,
+# acronyms tied to the role, methodologies, and role-relevant
+# hyphenated compounds. Include company names (we extract them as a
+# byproduct of body-mention; not strictly an ATS keyword but not a bug
+# either). Exclude single English words that are capitalised purely
+# because they sit at sentence start.
+
+entry_level_swe.txt:
+  - Acme Cloud
+  - Python
+  - AWS
+  - Azure
+  - CD
+  - CI
+  - command-line
+  - customer-facing
+  - customer-reported
+  - Django
+  - Docker
+  - FastAPI
+  - Flask
+  - GCP
+  - Git
+  - Go
+  - Java
+  - Jest
+  - Linux
+  - on-call
+  - PostgreSQL
+  - Redis
+  - TypeScript
+
+mid_level_backend.txt:
+  - AWS
+  - ECS
+  - Lambda
+  - Python
+  - RDS
+  - SQS
+  - CDK
+  - CloudFormation
+  - Datadog
+  - event-driven
+  - fast-growing
+  - Go
+  - high-performance
+  - high-throughput
+  - infrastructure-as-code
+  - Kafka
+  - Kinesis
+  - mid-level
+  - next-generation
+  - on-call
+  - OpenTelemetry
+  - PostgreSQL
+  - real-time
+  - RFC
+  - S3
+  - Streamline
+  - Terraform
+
+executive_vp_engineering.txt:
+  - Board
+  - CEO
+  - CFO
+  - CTO
+  - IPO
+  - CPO
+  - Directors
+  - HIPAA
+  - end-to-end
+  - Eng
+  - Engineering
+  - family-formation
+  - FDA
+  - Health
+  - high-growth
+  - HQ
+  - Lattice Health
+  - PTO
+  - SOC
+  - venture-backed
+  - VP
+
+data_scientist.txt:
+  - data-science
+  - EHR
+  - FDA
+  - ML
+  - ad-hoc
+  - AI
+  - clinical-validation
+  - de-identified
+  - decision-making
+  - end-to-end
+  - equal-opportunity
+  - family-formation
+  - FHIR
+  - Fluent Python
+  - HIPAA
+  - HQ
+  - Lumen Health
+  - OMOP
+  - on-call
+  - patient-risk-stratification
+  - PhD
+  - PySpark
+  - Python
+  - PyTorch
+  - scikit-learn
+  - self-supervised
+  - SQL
+  - TensorFlow
+  - weights-and-biases
+
+product_designer.txt:
+  - B2B
+  - cross-border
+  - cross-functional
+  - CSS
+  - data-dense
+  - design-system
+  - Dispatcher Console
+  - end-to-end
+  - Figma
+  - high-fidelity
+  - micro-interaction
+  - multi-step
+  - operations-heavy
+  - Portfolio
+  - React
+  - remote-friendly
+  - safety-critical
+  - Stelvio Logistics
+  - workflow-critical
