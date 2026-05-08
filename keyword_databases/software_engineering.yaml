@@ -1,0 +1,133 @@
+# Software Engineering keyword database — seed list
+#
+# Used by the keyword analyzer (Sprint 5) when --industry software-engineering
+# is specified, or when auto-detection identifies an SWE-flavored JD.
+#
+# This is intentionally a seed (~70 entries). Sprint 5+ will expand it based
+# on real JD samples and contributor PRs. Keep entries deduplicated and avoid
+# vendor-specific marketing names that change frequently.
+
+metadata:
+  industry: "software-engineering"
+  version: "0.1.0"
+  source: "Hand-curated from sample SWE job descriptions, May 2026"
+  last_updated: "2026-05-08"
+
+hard_skills:
+  # Languages
+  - name: "Python"
+    synonyms: ["python3", "py"]
+  - name: "TypeScript"
+    synonyms: ["ts"]
+  - name: "JavaScript"
+    synonyms: ["js", "ecmascript"]
+  - "Go"
+  - "Rust"
+  - "Java"
+  - "C++"
+  - "C#"
+  - "Ruby"
+  - "Swift"
+  - "Kotlin"
+  - "SQL"
+  - "Bash"
+
+  # Backend frameworks
+  - "FastAPI"
+  - "Django"
+  - "Flask"
+  - "Express"
+  - "Spring Boot"
+  - "Rails"
+  - ".NET"
+
+  # Frontend frameworks
+  - "React"
+  - "Vue"
+  - "Angular"
+  - "Next.js"
+  - "Svelte"
+
+  # Data stores
+  - name: "PostgreSQL"
+    synonyms: ["postgres", "psql"]
+  - "MySQL"
+  - "Redis"
+  - "MongoDB"
+  - "Elasticsearch"
+  - "DynamoDB"
+  - "Redshift"
+  - "Snowflake"
+  - "Kafka"
+  - "RabbitMQ"
+
+  # Cloud + infra
+  - name: "Amazon Web Services"
+    synonyms: ["AWS"]
+  - name: "Google Cloud Platform"
+    synonyms: ["GCP"]
+  - "Azure"
+  - "Docker"
+  - "Kubernetes"
+  - "Terraform"
+  - "Helm"
+  - "Linux"
+
+  # Practices / methodologies
+  - "TDD"
+  - "CI/CD"
+  - "REST"
+  - "GraphQL"
+  - "gRPC"
+  - "Microservices"
+  - "Event-driven architecture"
+  - "Distributed systems"
+  - "Observability"
+  - "OpenTelemetry"
+
+  # Testing
+  - "pytest"
+  - "Jest"
+  - "Cypress"
+  - "Playwright"
+
+  # Tooling
+  - "Git"
+  - "GitHub Actions"
+  - "Datadog"
+  - "Prometheus"
+  - "Grafana"
+
+soft_skills:
+  - "Technical communication"
+  - "Mentorship"
+  - "Code review"
+  - "Cross-functional collaboration"
+  - "Written communication"
+  - "Stakeholder management"
+  - "Problem solving"
+  - "Pair programming"
+  - "Design feedback"
+  - "On-call ownership"
+
+industry_terms:
+  - "Software development life cycle"
+  - "Agile"
+  - "Scrum"
+  - name: "Service-level objective"
+    synonyms: ["SLO"]
+  - name: "Service-level agreement"
+    synonyms: ["SLA"]
+  - "Incident response"
+  - "Postmortem"
+  - "Runbook"
+  - "Design RFC"
+  - "Architecture review"
+  - "Blameless culture"
+  - "DORA metrics"
+  - "Reliability engineering"
+  - "Software supply chain"
+
+# action_verbs intentionally empty for SWE — the global list at
+# src/open_ats/data/action_verbs.yaml (Sprint 7) covers common engineering verbs.
+action_verbs: []

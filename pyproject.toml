@@ -7,8 +7,8 @@ name = "open-ats-scanner"
 version = "0.1.0"
 description = "Transparent, unlimited, open-source ATS resume scanning tool"
 readme = "README.md"
-requires-python = ">=3.9"
-license = {text = "MIT"}  # [PLACEHOLDER: Confirm license]
+requires-python = ">=3.10"
+license = {text = "MIT"}
 authors = [
     {name = "Jonathan Lyn-Shue", email = "jonathan.lynshue@gmail.com"}
 ]
@@ -22,7 +22,6 @@ classifiers = [
     "Topic :: Office/Business",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -30,7 +29,7 @@ classifiers = [
 
 dependencies = [
     "click>=8.1.0",           # CLI framework
-    "pydantic>=2.0.0",        # Data validation
+    "pydantic[email]>=2.0.0", # Data validation (email-validator for EmailStr)
     "spacy>=3.7.0",           # NLP
     "nltk>=3.8.0",            # NLP
     "python-docx>=1.1.0",     # DOCX parsing
@@ -102,12 +101,14 @@ exclude_lines = [
 
 [tool.black]
 line-length = 88
-target-version = ['py39', 'py310', 'py311']
+target-version = ['py310', 'py311', 'py312']
 include = '\.pyi?$'
 
 [tool.ruff]
 line-length = 88
-target-version = "py39"
+target-version = "py310"
+
+[tool.ruff.lint]
 select = [
     "E",   # pycodestyle errors
     "W",   # pycodestyle warnings
@@ -122,7 +123,7 @@ ignore = [
 ]
 
 [tool.mypy]
-python_version = "3.9"
+python_version = "3.10"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true

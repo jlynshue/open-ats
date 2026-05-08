@@ -1,0 +1,34 @@
+Senior Backend Engineer — Streamline Analytics
+
+The team
+Our Data Platform team owns the ingestion, transformation, and serving layers that power Streamline's real-time analytics products. We process over 80 billion events per month and serve thousands of customers from Fortune-500 enterprises to fast-growing startups. The team is small (8 engineers, growing to 14 this year), highly autonomous, and ships to production daily.
+
+What you'll own
+- Design, build, and operate Python services running on AWS (Lambda, ECS, RDS, SQS) that handle high-throughput data pipelines
+- Lead architectural decisions for our next-generation event ingestion pipeline; you'll be a primary author of the design RFC
+- Mentor junior and mid-level engineers via code review, pairing, and design feedback
+- Carry on-call rotation for the services you own; participate in blameless postmortems
+- Partner with product managers and analytics customers to translate ambiguous requirements into shippable specs
+- Drive observability improvements (Datadog, OpenTelemetry, structured logging) across the platform
+
+Requirements
+- 5+ years of professional software engineering experience, with at least 3 years in Python
+- Production experience with AWS services (Lambda, ECS, RDS, S3, SQS or similar)
+- Deep understanding of relational databases (PostgreSQL preferred); query optimization, indexing strategy, schema design
+- Hands-on experience operating high-throughput services (10K+ requests/sec or 1B+ events/day)
+- Experience with infrastructure-as-code (Terraform, CloudFormation, or CDK)
+- Strong written communication; you've authored design docs that shaped team direction
+- Track record of mentoring more junior engineers
+
+Bonus points
+- Experience with Go for high-performance services
+- Background in event-driven architectures (Kafka, Kinesis, or similar)
+- Open-source contributions to data tooling
+- Experience reducing AWS spend through rightsizing or architectural changes
+
+What we offer
+- Competitive base + equity + performance bonus
+- Remote-first with team meetups in Austin twice yearly
+- $2,000 annual learning and conference budget
+- Comprehensive health, dental, vision, and 401(k) match
+- Sabbatical after 4 years

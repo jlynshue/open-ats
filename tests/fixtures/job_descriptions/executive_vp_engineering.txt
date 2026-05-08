@@ -1,0 +1,36 @@
+Vice President of Engineering — Lattice Health (Series D, $180M raised)
+
+About Lattice Health
+Lattice Health is a venture-backed healthcare technology company building the operating system for modern hospital systems. Our platform serves 230+ hospitals and 18M+ patient records. We are scaling rapidly and seeking a Vice President of Engineering to lead our 140-person engineering organization and partner with the CEO on the next phase of growth — including a planned IPO in the next 24 months.
+
+The opportunity
+You will own the engineering organization end-to-end: people, process, technical strategy, and execution. You'll partner closely with the CEO, CTO, CPO, CFO, and Board on company direction. Reporting to the CTO, you will be responsible for delivering Lattice Health's platform roadmap while preparing the organization for the operational rigor and security posture required for IPO and continued scale.
+
+What you'll do
+- Lead and grow the engineering organization (currently 140; expected to reach 220 in 24 months) across 5 product groups and a central platform organization
+- Set engineering strategy in partnership with the CTO, CPO, and product leadership
+- Own engineering operating budget ($45M+ annual run rate) including headcount planning, vendor decisions, and infrastructure spend
+- Drive operational excellence: SOC 2, HITRUST, HIPAA compliance posture; reliability and incident management; software supply chain security
+- Hire, develop, and retain senior engineering leaders (Directors, VPs of Eng for product groups, principal engineers)
+- Partner with the CFO and audit/risk committees on engineering metrics and Board reporting
+- Shape technical due diligence for potential acquisitions and represent engineering in strategic conversations
+- Champion engineering excellence, mentorship, and inclusive culture across the organization
+
+What we're looking for
+- 12+ years of engineering management experience, with 5+ years at the VP level or equivalent
+- Track record of scaling engineering organizations from ~50 to 200+ engineers in high-growth environments
+- Experience leading teams through major business events: IPO, acquisition, regulatory certification
+- Deep understanding of platform engineering, distributed systems, and software supply chain security
+- Healthcare technology experience strongly preferred (HIPAA, HITRUST, FDA pathways)
+- Experience reporting to a Board of Directors and partnering with CEO/CFO on company strategy
+- Proven ability to hire and develop senior engineering leaders
+- Bachelor's degree in computer science or equivalent; advanced degrees a plus
+
+Compensation and benefits
+- Competitive base + significant equity + performance bonus
+- Comprehensive health, dental, vision, and 401(k) match
+- Unlimited PTO with a 4-week minimum
+- Generous parental leave and family-formation benefits
+- Hybrid; HQ in New York with offices in San Francisco and Boston
+
+Lattice Health is committed to building a diverse and inclusive engineering organization. We strongly encourage applications from candidates of all backgrounds.

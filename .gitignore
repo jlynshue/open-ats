@@ -46,19 +46,20 @@ htmlcov/
 coverage.xml
 *.cover
 
-# Audit trail data (user-specific)
-audit_trail/
+# Audit trail data (user-specific) — root-anchored so it doesn't shadow src/open_ats/audit_trail/
+/audit_trail/
 *.audit.json
 
-# Reports (generated)
-reports/
+# Reports (generated) — root-anchored
+/reports/
 *.report.html
 *.report.json
 *.report.pdf
 
-# User data (resumes, JDs)
-resumes/
-job_descriptions/
+# User data (resumes, JDs) — root-anchored so they don't shadow
+# tests/fixtures/resumes/ and tests/fixtures/job_descriptions/.
+/resumes/
+/job_descriptions/
 examples/user_*
 
 # Logs

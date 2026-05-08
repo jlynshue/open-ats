@@ -44,25 +44,27 @@ open-ats compare --from-scan <id1> --to-scan <id2> --output improvement.html
 
 ```
 open-ats/
-├── src/                    # Source code
-│   ├── parsers/            # Resume and JD parsing
-│   ├── analyzers/          # Keyword, quantification, formatting analysis
-│   ├── scoring/            # Transparent scoring engine
-│   ├── reporting/          # Report generation (JSON, HTML, PDF)
-│   ├── audit_trail/        # Version control and improvement tracking
-│   └── cli/                # Command-line interface
-├── tests/                  # Test suite
-│   ├── unit/               # Unit tests (80%+ coverage target)
-│   ├── integration/        # Integration tests
-│   ├── e2e/                # End-to-end tests
-│   └── fixtures/           # Sample resumes and job descriptions
-├── docs/                   # Documentation
-│   ├── PRD.md              # Complete Product Requirements Document
-│   └── [more docs TBD]
-├── examples/               # Example resumes, JDs, configs
-├── keyword_databases/      # Industry-specific keyword lists
-└── config/                 # Default configuration files
+├── src/open_ats/           # Python package (import root: `open_ats`)
+│   ├── parsers/            # Markdown, DOCX, PDF, TXT resume + JD parsers
+│   ├── analyzers/          # Keyword, quantification, formatting, content quality
+│   ├── scoring/            # Transparent scoring engine + configurable weights
+│   ├── reporting/          # JSON / HTML / PDF report generation
+│   ├── audit_trail/        # Scan history (SQLite-backed), compare, batch
+│   ├── cli/                # `open-ats` command-line entry point (cli.main:cli)
+│   └── data/               # Bundled word lists, action verbs, scoring presets
+├── tests/                  # Test suite (matches Sprint cadence in plan)
+│   ├── unit/               # Unit tests (≥80% module coverage)
+│   ├── integration/        # Cross-module integration tests
+│   ├── e2e/                # CLI invocation → file output
+│   ├── validation/         # Golden cases, idempotency, perf, JobScan correlation
+│   └── fixtures/           # Sample resumes (md/docx/pdf/txt) and JDs
+├── docs/                   # Specifications and reference docs
+│   └── PRD.md              # Product Requirements Document (Sprint 0 expansion)
+├── keyword_databases/      # Industry-specific keyword YAML files
+└── .context/sprints/       # Per-sprint contracts + evaluator verdicts (gitignored)
 ```
+
+**Console script:** `open-ats = "open_ats.cli.main:cli"` (declared in `pyproject.toml`).
 
 ## Development Workflow
 
@@ -346,3 +348,16 @@ If scoring doesn't match JobScan:
 
 **Last Updated:** 2026-05-08  
 **Project Phase:** Planning Complete, MVP Implementation Starting
+
+## gstack (recommended)
+
+This project uses [gstack](https://github.com/garrytan/gstack) for AI-assisted workflows.
+Install it for the best experience:
+
+```bash
+git clone --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack
+cd ~/.claude/skills/gstack && ./setup --team
+```
+
+Skills like /qa, /ship, /review, /investigate, and /browse become available after install.
+Use /browse for all web browsing. Use ~/.claude/skills/gstack/... for gstack file paths.

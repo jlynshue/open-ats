@@ -1,0 +1,34 @@
+Software Engineer, New Grad — Acme Cloud
+
+About the role
+Acme Cloud is hiring new-grad software engineers to join one of our product platform teams. You will work alongside experienced engineers shipping production code that supports millions of customer requests each day. We invest heavily in our junior engineers: every new grad is paired with a senior mentor for their first six months and works on real customer-facing problems from week one.
+
+What you'll do
+- Build and maintain backend services in Python (FastAPI, Django, or Flask) backed by PostgreSQL and Redis
+- Write unit and integration tests for everything you ship; we target 80%+ coverage on new code
+- Participate in code review, both as author and reviewer
+- Investigate and resolve customer-reported bugs with help from your team
+- Contribute to internal documentation and runbooks as you learn the systems
+- Pair with senior engineers on production debugging and on-call shadowing
+
+Required qualifications
+- B.S. in Computer Science, Computer Engineering, or a related technical field (graduating in 2026)
+- Solid foundation in data structures, algorithms, and operating systems
+- Experience with at least one modern programming language (Python, Go, Java, or TypeScript preferred)
+- Familiarity with Git and basic Linux command-line use
+- Clear written and verbal communication
+
+Nice to have
+- Internship experience in software engineering
+- Open-source contributions or personal projects you can talk through
+- Exposure to cloud platforms (AWS, GCP, or Azure)
+- Familiarity with Docker and CI/CD pipelines
+- Experience writing automated tests with pytest, Jest, or similar
+
+Benefits
+- Competitive salary, equity, and benefits
+- Remote-friendly with optional hubs in San Francisco, Austin, and New York
+- Generous learning budget and conference attendance
+- 401(k) match, comprehensive health/dental/vision
+
+Acme Cloud is an equal-opportunity employer.
