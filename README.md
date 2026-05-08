@@ -55,7 +55,7 @@ open-ats compare \
 
 - [x] Resume parsing — Markdown (Sprint 1)
 - [x] Resume parsing — DOCX, TXT (Sprint 2)
-- [ ] Resume parsing — PDF (Sprint 3)
+- [x] Resume parsing — PDF (Sprint 3) — FR-1 complete
 - [ ] Job description parsing
 - [ ] Keyword matching analysis
 - [ ] Quantification rate calculation

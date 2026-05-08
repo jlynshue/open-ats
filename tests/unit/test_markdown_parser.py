@@ -259,18 +259,19 @@ def test_parse_text_matches_parse_path(
 def test_unsupported_format_raises(tmp_path: Path) -> None:
     """parse_resume() rejects extensions with no registered parser.
 
-    .pdf isn't wired until Sprint 3, so it remains a usable canary here.
+    Sprint 3 wired .pdf in, so .rtf takes over as the canary unsupported
+    format. (FR-1 covers .md/.docx/.pdf/.txt; .rtf has no roadmap entry.)
     """
-    fake = tmp_path / "resume.pdf"
-    fake.write_bytes(b"not really a pdf")
+    fake = tmp_path / "resume.rtf"
+    fake.write_bytes(b"{\\rtf1}")
     with pytest.raises(UnsupportedFormatError) as excinfo:
         parse_resume(fake)
     assert ".md" in excinfo.value.supported
 
 
 def test_unsupported_format_message_lists_supported() -> None:
-    err = UnsupportedFormatError(".pdf", [".md", ".markdown"])
-    assert ".pdf" in str(err)
+    err = UnsupportedFormatError(".rtf", [".md", ".markdown"])
+    assert ".rtf" in str(err)
     assert ".md" in str(err)
 
 
