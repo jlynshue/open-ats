@@ -1,0 +1,71 @@
+# Sprint 5 golden scoring cases — (resume, JD, expected_score) tuples.
+#
+# Sprint-5 grading threshold #3:
+#   For each case, |actual - expected| ≤ tolerance (default 5).
+#
+# These scores are computed by the Sprint-5 keyword-only pipeline:
+# parse_resume → KeywordAnalyzer → ScoringEngine → Score.overall.
+# When Sprints 6–8 add quantification / formatting / content-quality
+# analyzers + multi-category aggregation, these scores will SHIFT.
+# Re-pin them in those sprints; the ±5 tolerance buffers minor
+# tweaks (e.g., adding a stop-word) without forcing a re-pin every
+# commit.
+
+cases:
+  - name: matched_entry
+    resume: entry_level.md
+    job_description: entry_level_swe.txt
+    expected: 76
+    tolerance: 5
+    note: |
+      Entry-level SWE resume against entry-level SWE JD. Hard-skill
+      overlap (Python / AWS / Docker / FastAPI / etc.) is strong;
+      action-verb subscore is low because the resume uses a smaller
+      bullet count than the executive — so the "Good" tier (~75)
+      is the realistic ceiling pre-Sprint 7's content-quality pass.
+
+  - name: matched_mid
+    resume: mid_level.md
+    job_description: mid_level_backend.txt
+    expected: 91
+    tolerance: 5
+    note: |
+      Mid-level Python/AWS resume against the matching backend JD —
+      strong overlap across all four sub-scores. Excellent tier.
+
+  - name: matched_executive
+    resume: executive.md
+    job_description: executive_vp_engineering.txt
+    expected: 100
+    tolerance: 5
+    note: |
+      Engineering VP resume against the VPE JD. The executive JD has
+      few specific tech keywords; the resume mentions HIPAA / SOC /
+      IPO / etc. plus rich strong-action-verb usage. Pegs at 100;
+      Sprint 6+ analyzers will pull this down on quantification /
+      formatting realism.
+
+  - name: mismatch_executive_to_entry
+    resume: executive.md
+    job_description: entry_level_swe.txt
+    expected: 50
+    tolerance: 5
+    note: |
+      Executive resume against entry-level SWE JD — should score
+      poorly on hard_skills (executive doesn't mention specific
+      languages/frameworks) but high on action_verbs (executive
+      bullets are verb-heavy) and soft_skills/industry_terms
+      (sparse JD coverage). Sub-100 by design.
+
+  - name: mismatch_mid_to_designer
+    resume: mid_level.md
+    job_description: product_designer.txt
+    expected: 47
+    tolerance: 5
+    note: |
+      Mid-level backend resume against product-designer JD —
+      hard_skills score 0 (no Figma / B2B / design-system in the
+      resume) drags the overall down despite full action-verbs and
+      neutral soft/industry. Demonstrates the analyzer correctly
+      penalises a clear mismatch even in Sprint 5's keyword-only
+      mode.
