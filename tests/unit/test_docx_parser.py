@@ -155,9 +155,12 @@ def test_parse_is_deterministic(
 # ─── Threshold #12 — Format dispatch / unsupported PDF still rejected ─
 
 
-def test_pdf_still_unsupported(tmp_path: Path) -> None:
-    fake = tmp_path / "resume.pdf"
-    fake.write_bytes(b"%PDF-1.4 fake")
+def test_unsupported_extension_still_rejected(tmp_path: Path) -> None:
+    """Sprint 3 wired .pdf in; .rtf takes over as the canary unsupported
+    format. Documents that adding new format support doesn't quietly
+    accept everything."""
+    fake = tmp_path / "resume.rtf"
+    fake.write_bytes(b"{\\rtf1}")
     with pytest.raises(UnsupportedFormatError):
         parse_resume(fake)
 

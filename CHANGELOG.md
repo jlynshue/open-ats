@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added (Sprint 3 — PDF Resume Parser)
+- `src/open_ats/parsers/pdf_parser.py` — `PdfParser` opens `.pdf` via pdfplumber, extracts text page-by-page, raises `ResumeParseError("PDF appears to be image-based; please convert to text-based PDF")` (FR-1.3 verbatim) when extraction yields nothing, otherwise renders text → markdown via the shared heuristic and delegates to `MarkdownParser`.
+- `src/open_ats/parsers/_heuristic.py` — extracted the text→markdown heading/bullet detector out of `txt_parser.py` so PDF and TXT share one implementation. No behavioural change for TXT.
+- `src/open_ats/parsers/__init__.py` — `.pdf` registered; `supported_extensions()` now reports the full FR-1 set: `.docx`, `.markdown`, `.md`, `.pdf`, `.txt`.
+- `tests/unit/test_pdf_parser.py` (16 tests) — single-column / multi-column / image-based fixture coverage, FR-1.3 verbatim-message check, NFR-1 partial perf gate (<2s parse), determinism, dispatcher wiring, error paths.
+- 3 PDF fixtures: `tests/fixtures/resumes/{single_column,multi_column,image_based}.pdf`, generated via the extended `_build_binary_fixtures.py` (now also produces PDFs).
+- `tests/fixtures/_build_binary_fixtures.py` — extended to produce PDF fixtures via fpdf2; includes `_to_helvetica_safe` to substitute em-dash/curly-quotes/bullet for ASCII equivalents (fpdf2's bundled core fonts are WinAnsi-only).
+- `pyproject.toml` — `fpdf2>=2.7.0` added to `[dev]` extras (fixture-only dep).
+
+### Changed
+- README "Phase 1 (MVP)" status: PDF parsing checked off; FR-1 (resume parsing) is implementation-complete across all four formats.
+- `tests/unit/test_markdown_parser.py` and `tests/unit/test_docx_parser.py`: unsupported-extension canary migrated `.pdf` → `.rtf` (`.pdf` now wired).
+- `src/open_ats/parsers/txt_parser.py` — refactored to import `text_to_markdown` from `_heuristic.py`; no behavioural change.
+
 ### Added (Sprint 2 — DOCX & TXT Parsers)
 - `src/open_ats/parsers/docx_parser.py` — `DocxParser` walks the document body in order (paragraphs + tables), classifies each paragraph by Word style (Heading 1-6, List Bullet/Number/Paragraph, body), preserves bold runs as `**markers**` so experience titles split correctly downstream, then delegates to `MarkdownParser`. Tables are rendered cell-by-cell as fallback text and surfaced via `formatting.table_detected` warning.
 - `src/open_ats/parsers/txt_parser.py` — `TxtParser` heuristically promotes ALL CAPS lines, "Section:" lines, and underline-decorated lines (`===`/`---`) to markdown headings (only when the heading text classifies into a known `SectionType`), normalizes bullet styles (`-`, `*`, `•`, `1.`), then delegates to `MarkdownParser`.
