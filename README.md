@@ -2,12 +2,12 @@
 
 **Transparent, Unlimited, Open-Source ATS Resume Scanning Tool**
 
-A comprehensive resume scanner that emulates commercial ATS tools (JobScan, Resume Worded) while providing transparent scoring, complete audit trails, and proof of improvement tracking.
+A comprehensive resume scanner that emulates commercial ATS tools while providing transparent scoring, complete audit trails, and proof of improvement tracking.
 
 ## Features
 
 - ✅ **Transparent Scoring** - All formulas and calculations are visible and auditable
-- ✅ **Unlimited Scans** - No monthly limits like commercial tools (JobScan: 5/month)
+- ✅ **Unlimited Scans** - No monthly limits like commercial tools 
 - ✅ **Complete Audit Trail** - Track improvements over time with version control
 - ✅ **Multiple Formats** - Support for Markdown, DOCX, PDF, and plain text resumes
 - ✅ **Actionable Recommendations** - Prioritized suggestions with expected score impact
