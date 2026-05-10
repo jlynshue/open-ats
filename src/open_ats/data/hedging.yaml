@@ -1,0 +1,25 @@
+# Hedging language (PRD §10.4, ≥10 entries).
+#
+# Used by ContentQualityAnalyzer. Hedging language is anything that
+# qualifies or downplays the candidate's contribution. Each entry is
+# matched as a case-insensitive substring of a bullet.
+
+phrases:
+  - Helped to
+  - Tried to
+  - Worked on
+  - Worked with
+  - Was involved in
+  - Participated in
+  - Familiar with
+  - Exposed to
+  - Some experience with
+  - Basic understanding of
+  - Working knowledge of
+  - Have used
+  - Have worked with
+  - Had a hand in
+  - Took part in
+  - Played a role in
+  - Contributed somewhat to
+  - Got introduced to

@@ -1,0 +1,41 @@
+# Weak verbs (PRD §10.2, ≥30 entries).
+#
+# Used by ContentQualityAnalyzer to mark bullets that start with a
+# weak verb (drags down the action-verb-strength sub-score).
+# Match is case-insensitive on the bullet's first word OR a literal
+# substring of the bullet for multi-word entries (e.g.,
+# "was responsible for").
+
+verbs:
+  - Assisted
+  - Attempted
+  - Compiled
+  - Conducted
+  - Considered
+  - Contributed
+  - Coordinated
+  - Handled
+  - Helped
+  - Investigated
+  - Monitored
+  - Observed
+  - Participated
+  - Performed
+  - Provided
+  - Reviewed
+  - Saw
+  - Studied
+  - Supported
+  - Tracked
+  - Utilized
+  - Watched
+  - Worked
+  - Wrote
+  - Used
+  - Tried
+  - Was-responsible-for
+  - Was-tasked-with
+  - Worked-on
+  - Worked-with
+  - Took-part
+  - Got-involved

@@ -58,12 +58,12 @@ open-ats compare \
 - [x] Resume parsing — PDF (Sprint 3) — FR-1 complete
 - [x] Job description parsing (Sprint 4) — FR-2 complete
 - [x] Keyword matching analysis (Sprint 5) — FR-3 complete
-- [x] ATS compatibility scoring 0–100 (Sprint 5, keyword-only; full multi-category in Sprint 8)
+- [x] ATS compatibility scoring 0–100 (Sprint 5; 3-category in Sprint 7; full PRD in Sprint 8)
 - [x] JSON reports (Sprint 5) — HTML in Sprint 9
 - [x] CLI interface (Sprint 5, `scan` command) — `compare`/`batch` in Sprint 10
-- [ ] Quantification rate calculation (Sprint 6)
-- [ ] Formatting validation (Sprint 7)
-- [ ] Content quality analysis (Sprint 7)
+- [x] Formatting validation (Sprint 7) — FR-5 complete
+- [x] Content quality analysis (Sprint 7) — FR-6 complete
+- [ ] Quantification rate calculation (Sprint 6, deferred)
 - [ ] Basic audit trail (Sprint 10)
 
 **Phase 2 (Enhancement) - Planned**

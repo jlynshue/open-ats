@@ -25,6 +25,7 @@ import re
 from dataclasses import dataclass
 
 from open_ats.analyzers._database import KeywordDatabase, load_default_database
+from open_ats.data._loader import load_action_verbs
 from open_ats.models import (
     AnalyzerResult,
     JobDescription,
@@ -39,57 +40,18 @@ _SOFT_WEIGHT = 0.25
 _ACTION_WEIGHT = 0.15
 _INDUSTRY_WEIGHT = 0.10
 
-# Inline strong-action-verb list (~30) bootstrapped here for Sprint 5.
-# Sprint 7 will replace with ``src/open_ats/data/action_verbs.yaml``.
-# Source: PRD §10.1 (subset prioritising verbs that frequently appear
-# bullet-leading in real engineering / product / leadership resumes).
-_BOOTSTRAP_ACTION_VERBS: frozenset[str] = frozenset(
-    v.casefold()
-    for v in (
-        "Achieved",
-        "Architected",
-        "Built",
-        "Created",
-        "Decreased",
-        "Defined",
-        "Delivered",
-        "Designed",
-        "Developed",
-        "Drove",
-        "Eliminated",
-        "Engineered",
-        "Established",
-        "Executed",
-        "Generated",
-        "Grew",
-        "Guided",
-        "Implemented",
-        "Improved",
-        "Increased",
-        "Initiated",
-        "Launched",
-        "Led",
-        "Managed",
-        "Mentored",
-        "Migrated",
-        "Optimized",
-        "Orchestrated",
-        "Owned",
-        "Pioneered",
-        "Reduced",
-        "Refactored",
-        "Resolved",
-        "Restructured",
-        "Saved",
-        "Scaled",
-        "Shipped",
-        "Simplified",
-        "Spearheaded",
-        "Standardized",
-        "Streamlined",
-        "Tripled",
-    )
-)
+
+def _action_verb_set() -> frozenset[str]:
+    """Lazy-load the canonical action-verb list (PRD §10.1).
+
+    Promoted from a Sprint-5 inline bootstrap to ``src/open_ats/data/
+    action_verbs.yaml`` in Sprint 7. The :class:`ContentQualityAnalyzer`
+    uses the same source so action-verb judgment stays consistent across
+    analyzers.
+    """
+    return frozenset(v.casefold() for v in load_action_verbs())
+
+
 # Target count of distinct strong action verbs we expect to see in a
 # competitive resume. Calibrated against `tests/fixtures/resumes/*.md`:
 # the mid-level fixture uses ~12, executive ~15. 10 is a generous
@@ -297,9 +259,10 @@ def _action_verb_subscore(resume: Resume) -> tuple[float, list[str]]:
             if first:
                 bullet_starts.append(first.casefold())
 
+    verbs = _action_verb_set()
     matched: set[str] = set()
     for word in bullet_starts:
-        if word in _BOOTSTRAP_ACTION_VERBS:
+        if word in verbs:
             matched.add(word)
 
     score = min(100.0, 100.0 * len(matched) / max(1, _ACTION_VERB_TARGET))

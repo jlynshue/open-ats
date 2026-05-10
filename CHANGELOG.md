@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added (Sprint 7 — Formatting + Content Quality Analyzers)
+- `src/open_ats/analyzers/formatting.py` — `FormattingAnalyzer` per PRD §FR-5. Penalty-based: starts at 100, subtracts for tables (-10), missing email (-15), missing name (-15), date inconsistency (-5), special-character inconsistency (-1 each, capped at -10), excessive line length (-1 each, capped at -3). Issues surface in `AnalyzerResult.issues` with human-readable strings.
+- `src/open_ats/analyzers/content_quality.py` — `ContentQualityAnalyzer` per PRD §FR-6. Sub-scores: action-verb strength (40%, % of bullets starting with a strong verb), passive-voice absence (30%, `100 - density × 100`), hedging absence (20%, same), word-count fitness (10%, plateau 400–800 words with linear decay outside). Heuristic passive detection combines `passive_markers.yaml` literals with an auxiliary+participle regex; **passive recall = 100% on a 30-sentence hand-tagged golden set** (gate ≥80%).
+- `src/open_ats/data/{action_verbs,weak_verbs,passive_markers,hedging}.yaml` — promoted from PRD §10. Counts: 62 strong action verbs (≥50), 32 weak verbs (≥30), 20 passive markers (≥15), 18 hedging phrases (≥10). Loaded via `src/open_ats/data/_loader.py` with `@cache` decorators (read once per process).
+- `src/open_ats/scoring/engine.py` — `three_category_config()` weights: keyword 50% / formatting 25% / content_quality 25%. Sprint 6 adds quantification (deferred); Sprint 8 introduces full PRD weights (40/20/20/20) with role-level presets.
+- `src/open_ats/cli/main.py` — `scan` now runs all 3 analyzers and aggregates via the new config. `analyzer_results` length in JSON output goes from 1 → 3.
+- `tests/fixtures/resumes/adversarial.md` — seeds every formatting penalty (table, missing email, mixed dates, em-dash + hyphen, long line).
+- `tests/fixtures/golden/passive_sentences.yaml` — 30 hand-tagged sentences for passive-voice recall measurement.
+- `tests/unit/test_formatting_analyzer.py` (12 tests) + `test_content_quality_analyzer.py` (18 tests).
+
+### Changed
+- `src/open_ats/analyzers/keyword.py` — Sprint-5 inline `_BOOTSTRAP_ACTION_VERBS` dropped; now loads `src/open_ats/data/action_verbs.yaml` via the shared loader. Behaviour unchanged on the existing fixtures (the inline list was a subset of the YAML).
+- `tests/fixtures/golden/scores.yaml` re-pinned for the 3-category aggregation:
+  - matched_entry: 76 → 80
+  - matched_mid: 91 → 92
+  - matched_executive: 100 → 95
+  - mismatch_executive_to_entry: 50 → 70
+  - mismatch_mid_to_designer: 47 → 70
+  Mismatched-pair scores rose because formatting + content-quality measure resume *structure* (not JD-fit). Sprint 8's full PRD weights will tighten the mismatch spread; the matched-vs-mismatched delta (~25 pts) is preserved.
+- README "Phase 1 (MVP)" status: formatting + content quality checked off. **Sprint 6 (quantification) deferred** — out-of-order execution per user direction; the engine accepts any subset of analyzer results, so quantification can land later as a fourth category.
+
 ### Added (Sprint 5 — Keyword Analyzer + First End-to-End CLI Slice)
 - `src/open_ats/analyzers/base.py` — `Analyzer` Protocol + `AnalyzerError`. Every analyzer (keyword today; quantification / formatting / content quality in Sprints 6–7) implements `analyze(resume, jd) -> AnalyzerResult`.
 - `src/open_ats/analyzers/_database.py` — `KeywordDatabase` loader for `keyword_databases/*.yaml` with case-insensitive lookup and synonym resolution. `load_default_database()` ships the bundled software-engineering seed; `load_databases([paths])` merges multiple files (first declaration wins).

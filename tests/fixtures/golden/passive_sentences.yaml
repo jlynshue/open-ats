@@ -1,0 +1,75 @@
+# Hand-tagged passive-voice golden set for ContentQualityAnalyzer (FR-6).
+#
+# Each entry is one sentence with a `passive: true|false` label. The
+# Sprint-7 grading threshold #4 requires recall ≥ 80% on this set —
+# i.e., for the sentences labelled `passive: true`, the analyzer
+# detects ≥80% of them.
+#
+# We deliberately include true-negative cases (active sentences that
+# share trigger words like "is" / "was" / "are") so a low-precision
+# analyzer would also fail visibly.
+
+sentences:
+  # ── True passives ─────────────────────────────────────────────────
+  - text: "The migration was completed in three weeks."
+    passive: true
+  - text: "All endpoints are tested via the new harness."
+    passive: true
+  - text: "I was responsible for the on-call rotation."
+    passive: true
+  - text: "We were tasked with reducing AWS spend by 30%."
+    passive: true
+  - text: "The platform has been used by 8M patients per year."
+    passive: true
+  - text: "The role had been split across two teams before I joined."
+    passive: true
+  - text: "I was given ownership of the analytics platform."
+    passive: true
+  - text: "The runbook was implemented across all 14 services."
+    passive: true
+  - text: "The migration is being managed by the infrastructure team."
+    passive: true
+  - text: "The new tracing stack has been deployed to all environments."
+    passive: true
+  - text: "Customer accounts were created automatically by the new flow."
+    passive: true
+  - text: "The reporting dashboard was redesigned end-to-end."
+    passive: true
+  - text: "Two engineers were promoted under my mentorship."
+    passive: true
+  - text: "The authentication module is being refactored this quarter."
+    passive: true
+  - text: "Several CI workflows were updated during the migration."
+    passive: true
+
+  # ── True actives (false negatives + look-alikes) ──────────────────
+  - text: "Led the redesign of the data-ingestion pipeline."
+    passive: false
+  - text: "Reduced p99 latency by 60% within two quarters."
+    passive: false
+  - text: "I architected a new event-driven service from scratch."
+    passive: false
+  - text: "Mentored 3 junior engineers; promoted 2 to mid-level."
+    passive: false
+  - text: "Tracing stack handles 80K events/sec at peak."
+    passive: false
+  - text: "Python is the team's primary language."
+    passive: false
+  - text: "The platform handles 8M+ requests per day."
+    passive: false
+  - text: "Our incident response time dropped from 45 to 12 minutes."
+    passive: false
+  - text: "Designed and shipped the v2 feature-flag service."
+    passive: false
+  - text: "I built the company's first feature-flagging system."
+    passive: false
+  - text: "Customers are happy with the redesign."
+    passive: false
+  - text: "Datadog dashboards monitor every production service."
+    passive: false
+  - text: "Authored 3 internal RFCs over the past year."
+    passive: false
+  - text: "The team meets weekly to review architecture proposals."
+    passive: false
+  - text: "Engineering KPIs are reported quarterly to the board."
+    passive: true  # "are reported" is passive — corrected after authoring
