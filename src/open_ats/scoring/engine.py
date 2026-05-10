@@ -120,9 +120,27 @@ def keyword_only_config() -> ScoringConfig:
     )
 
 
+def three_category_config() -> ScoringConfig:
+    """Sprint-7 weights — keyword 50% / formatting 25% / content_quality 25%.
+
+    Quantification (Sprint 6, deferred) joins as a fourth category;
+    Sprint 8 will introduce the full PRD §8 weights (40/20/20/20) along
+    with role-level presets.
+    """
+    return ScoringConfig(
+        role_level="mid",
+        weights={
+            "keyword": 0.50,
+            "formatting": 0.25,
+            "content_quality": 0.25,
+        },
+    )
+
+
 __all__ = [
     "ScoringEngine",
     "default_scoring_engine",
     "derive_rating",
     "keyword_only_config",
+    "three_category_config",
 ]

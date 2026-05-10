@@ -23,6 +23,8 @@ from pathlib import Path
 import click
 
 import open_ats
+from open_ats.analyzers.content_quality import ContentQualityAnalyzer
+from open_ats.analyzers.formatting import FormattingAnalyzer
 from open_ats.analyzers.keyword import KeywordAnalyzer
 from open_ats.models import ScanResult
 from open_ats.parsers import (
@@ -32,7 +34,7 @@ from open_ats.parsers import (
 )
 from open_ats.parsers.jd_parser import parse_job_description
 from open_ats.reporting.json_report import write_json
-from open_ats.scoring.engine import ScoringEngine, keyword_only_config
+from open_ats.scoring.engine import ScoringEngine, three_category_config
 
 
 @click.group()
@@ -82,11 +84,13 @@ def scan(resume_path: Path, jd_path: Path, output_path: Path) -> None:
     except ResumeParseError as exc:
         raise click.ClickException(f"Job description parse failed: {exc}") from exc
 
-    analyzer = KeywordAnalyzer()
-    keyword_result = analyzer.analyze(resume, jd)
+    keyword_result = KeywordAnalyzer().analyze(resume, jd)
+    formatting_result = FormattingAnalyzer().analyze(resume, jd)
+    content_result = ContentQualityAnalyzer().analyze(resume, jd)
+    analyzer_results = [keyword_result, formatting_result, content_result]
 
-    config = keyword_only_config()
-    score = ScoringEngine().score([keyword_result], config)
+    config = three_category_config()
+    score = ScoringEngine().score(analyzer_results, config)
 
     scan_result = ScanResult(
         scan_id=_deterministic_scan_id(resume_path, jd_path),
@@ -96,7 +100,7 @@ def scan(resume_path: Path, jd_path: Path, output_path: Path) -> None:
         jd_hash=_sha256(jd_path),
         resume=resume,
         job_description=jd,
-        analyzer_results=[keyword_result],
+        analyzer_results=analyzer_results,
         score=score,
         config=config,
     )

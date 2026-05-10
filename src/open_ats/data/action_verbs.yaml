@@ -1,0 +1,74 @@
+# Strong action verbs (PRD §10.1, ≥50 entries).
+#
+# Used by:
+#   - KeywordAnalyzer (Sprint 5+, action-verb sub-score)
+#   - ContentQualityAnalyzer (Sprint 7, action-verb-strength sub-score)
+#
+# Format: each entry is the past-tense canonical form. Matching is
+# case-insensitive on the bullet's first word. Synonyms / present-tense
+# variants live in tests as needed; we don't expand the YAML to keep
+# this list dense and curatable.
+
+verbs:
+  - Achieved
+  - Architected
+  - Authored
+  - Automated
+  - Built
+  - Coached
+  - Collaborated
+  - Conceived
+  - Crafted
+  - Created
+  - Decreased
+  - Defined
+  - Delivered
+  - Designed
+  - Developed
+  - Drove
+  - Eliminated
+  - Engineered
+  - Established
+  - Executed
+  - Expanded
+  - Generated
+  - Grew
+  - Guided
+  - Hired
+  - Implemented
+  - Improved
+  - Increased
+  - Influenced
+  - Initiated
+  - Innovated
+  - Instituted
+  - Introduced
+  - Invented
+  - Launched
+  - Led
+  - Managed
+  - Mentored
+  - Migrated
+  - Negotiated
+  - Optimized
+  - Orchestrated
+  - Originated
+  - Owned
+  - Pioneered
+  - Produced
+  - Reduced
+  - Refactored
+  - Resolved
+  - Restructured
+  - Revamped
+  - Saved
+  - Scaled
+  - Secured
+  - Shipped
+  - Simplified
+  - Spearheaded
+  - Standardized
+  - Streamlined
+  - Strengthened
+  - Tripled
+  - Unified

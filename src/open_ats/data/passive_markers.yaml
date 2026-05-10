@@ -1,0 +1,29 @@
+# Passive-voice markers (PRD §10.3, ≥15 entries).
+#
+# Used by ContentQualityAnalyzer to detect passive constructions in
+# resume bullets. Each entry is matched as a case-insensitive literal
+# substring within the sentence. Additionally, an auxiliary+participle
+# regex `(was|were|is|are|been|being|has\s+been|had\s+been|have\s+been)
+#  \s+\w+(ed|en)\b` is applied as a high-recall complement.
+
+markers:
+  - was responsible for
+  - were tasked with
+  - is being
+  - was being
+  - have been
+  - had been
+  - got assigned
+  - was given
+  - were asked to
+  - it was decided
+  - is performed
+  - are managed
+  - were created
+  - was implemented
+  - has been carried out
+  - was utilized
+  - was leveraged
+  - have been responsible
+  - was placed in charge
+  - was promoted to
