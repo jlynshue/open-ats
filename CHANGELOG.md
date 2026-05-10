@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added (Sprint 5 — Keyword Analyzer + First End-to-End CLI Slice)
+- `src/open_ats/analyzers/base.py` — `Analyzer` Protocol + `AnalyzerError`. Every analyzer (keyword today; quantification / formatting / content quality in Sprints 6–7) implements `analyze(resume, jd) -> AnalyzerResult`.
+- `src/open_ats/analyzers/_database.py` — `KeywordDatabase` loader for `keyword_databases/*.yaml` with case-insensitive lookup and synonym resolution. `load_default_database()` ships the bundled software-engineering seed; `load_databases([paths])` merges multiple files (first declaration wins).
+- `src/open_ats/analyzers/keyword.py` — `KeywordAnalyzer` implementing PRD §FR-3 + §8 keyword formula: reclassify JD candidates against the database, drop unknowns, match against the resume haystack (case-insensitive substring with word-boundary for single-word tokens), compute four sub-scores (hard 50% / soft 25% / action 15% / industry 10%), and emit a complete `AnalyzerResult`. Action-verb scoring uses a bootstrap list of ~40 strong verbs (PRD §10.1 subset); Sprint 7 promotes this to `src/open_ats/data/action_verbs.yaml`.
+- `src/open_ats/scoring/engine.py` — minimal `ScoringEngine` for Sprint 5: takes a list of `AnalyzerResult`s and produces a `Score` with one `CategoryScore` per analyzer, full `formula_audit`, rating derived per PRD §8 thresholds. Sprint 8 extends to multi-category weighted aggregation via role-level configs.
+- `src/open_ats/reporting/json_report.py` — `render_json(scan_result)` and `write_json(scan_result, path)` produce byte-stable JSON with sorted keys for deterministic diffs across runs.
+- `src/open_ats/cli/main.py` — replaced the Sprint-0 stub with the real `scan` command: `open-ats scan --resume X --job-description Y --output Z.json`. Builds a complete `ScanResult` with deterministic UUID + hashes + timestamp so two runs over identical inputs produce byte-identical reports.
+- `tests/fixtures/golden/scores.yaml` — 5 (resume, JD, expected_score) tuples with ±5 tolerance covering matched and mismatched pairs.
+- `tests/unit/test_keyword_analyzer.py` (18 tests), `tests/unit/test_scoring_engine.py` (10 tests), `tests/unit/test_json_report.py` (6 tests), `tests/e2e/test_cli_scan.py` (8 tests including the byte-identical determinism gate, golden-score sweep, and <3s perf gate).
+
+### v0.2.0 — first releasable artifact
+With Sprint 5, `open-ats scan` is end-to-end functional. Phase-1 input layer (resume + JD parsing) feeds the keyword analyzer; the scoring engine produces a transparent 0–100 Score with full formula audit; the JSON reporter writes bit-stable output. Sprints 6–10 add quantification / formatting / content-quality analyzers, multi-category aggregation, HTML reports, and the audit trail.
+
+### Changed
+- README "Phase 1 (MVP)" status: keyword matching, ATS scoring (keyword-only), JSON reports, and CLI all checked off.
+- `pyproject.toml` mypy override: added `yaml` and `fpdf` to `ignore_missing_imports` (no upstream type stubs).
+
 ### Added (Sprint 4 — Job Description Parser)
 - `src/open_ats/parsers/jd_parser.py` — `JdParser` + `parse_job_description(path_or_str)` top-level function. Walks JD lines detecting markdown or plain-text headings against a JD-specific alias map (Requirements / Required / Must have / Qualifications → `requirements`; What you'll do / The role → `responsibilities`; Nice to have / Bonus / Preferred → `preferences`; Benefits dropped). Extracts keyword candidates via rule-based passes: ALL-CAPS acronyms, multi-word title-case phrases, single proper nouns (with sentence-start filtering against a lowercase vocabulary), hyphenated lowercase compounds. Title and company extracted from the first non-empty line via `Title — Company` / `Title at Company` splitters.
 - 2 new JD fixtures: `data_scientist.txt` (healthcare ML role) and `product_designer.txt` (B2B logistics design role) — total now 5 fixtures across SWE / backend / executive / data-science / design.
