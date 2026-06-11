@@ -54,6 +54,117 @@ open-ats compare \
     --output improvement_report.html
 ```
 
+## Example Output
+
+```bash
+$ open-ats scan \
+    --resume resume.md \
+    --job-description backend-engineer-jd.txt \
+    --output report.json
+
+Scanned resume.md against backend-engineer-jd.txt: score = 72.25 (good). Wrote report.json.
+```
+
+<details>
+<summary>Sample JSON report (score breakdown)</summary>
+
+```json
+{
+  "scan_id": "a3f7c2e1-9b4d-5a8f-b6c1-d4e2f0a8b5c7",
+  "open_ats_version": "0.1.0",
+  "score": {
+    "overall": 72.25,
+    "rating": "good",
+    "categories": [
+      {
+        "name": "keyword",
+        "score": 68.5,
+        "weight": 0.5,
+        "contribution": 34.25,
+        "sub_scores": {
+          "hard_skills": 72.73,
+          "soft_skills": 66.67,
+          "action_verbs": 80.0,
+          "industry_terms": 50.0
+        }
+      },
+      {
+        "name": "formatting",
+        "score": 90.0,
+        "weight": 0.25,
+        "contribution": 22.5,
+        "sub_scores": {
+          "starting_score": 100.0,
+          "total_penalty": 10.0
+        }
+      },
+      {
+        "name": "content_quality",
+        "score": 62.0,
+        "weight": 0.25,
+        "contribution": 15.5,
+        "sub_scores": {
+          "action_verb_strength": 58.33,
+          "passive_voice_absence": 73.33,
+          "hedging_absence": 80.0,
+          "word_count_fitness": 100.0
+        }
+      }
+    ],
+    "formula_audit": [
+      {
+        "step": "keyword.contribution",
+        "formula": "0.5 * 68.5",
+        "inputs": { "weight": 0.5, "score": 68.5 },
+        "output": 34.25
+      },
+      {
+        "step": "formatting.contribution",
+        "formula": "0.25 * 90.0",
+        "inputs": { "weight": 0.25, "score": 90.0 },
+        "output": 22.5
+      },
+      {
+        "step": "content_quality.contribution",
+        "formula": "0.25 * 62.0",
+        "inputs": { "weight": 0.25, "score": 62.0 },
+        "output": 15.5
+      },
+      {
+        "step": "overall",
+        "formula": "sum of category contributions",
+        "inputs": { "keyword": 34.25, "formatting": 22.5, "content_quality": 15.5 },
+        "output": 72.25
+      }
+    ],
+    "recommendations": [
+      {
+        "category": "keyword",
+        "severity": "high",
+        "message": "Missing hard skills: Kubernetes, Terraform, gRPC. Add these to your experience bullets.",
+        "expected_score_impact": 8.5
+      },
+      {
+        "category": "content_quality",
+        "severity": "medium",
+        "message": "4/15 sentences use passive voice. Rewrite with active constructions.",
+        "expected_score_impact": 3.2
+      }
+    ]
+  },
+  "config": {
+    "role_level": "mid",
+    "weights": {
+      "keyword": 0.5,
+      "formatting": 0.25,
+      "content_quality": 0.25
+    }
+  }
+}
+```
+
+</details>
+
 ## How It Works
 
 ```
@@ -92,6 +203,8 @@ Each formula is documented and auditable. See [Scoring System](docs/scoring-syst
 - Before/after comparisons proving improvement
 
 ## Why Open ATS?
+
+Commercial ATS scanners charge $50-90/month for a black box that gives you a score with no explanation of how it was calculated. Open ATS takes the opposite approach: every formula, every weight, and every sub-score is visible and auditable. You get unlimited scans to iterate on your resume without hitting a paywall, and a complete audit trail that proves your improvements over time.
 
 ### Commercial Tool Comparison
 
