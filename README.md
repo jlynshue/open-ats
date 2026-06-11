@@ -1,24 +1,29 @@
 # Open ATS Resume Scanner
 
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/downloads/)
+[![MIT License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Tests](https://img.shields.io/badge/tests-passing-brightgreen)](tests/)
+[![PyPI](https://img.shields.io/badge/pypi-open--ats--scanner-blue)](https://pypi.org/project/open-ats-scanner/)
+
 **Transparent, Unlimited, Open-Source ATS Resume Scanning Tool**
 
-A comprehensive resume scanner that emulates commercial ATS tools while providing transparent scoring, complete audit trails, and proof of improvement tracking.
+A comprehensive resume scanner that emulates commercial ATS tools while providing transparent scoring, complete audit trails, and proof of improvement tracking. Zero black boxes. Unlimited scans. Complete version control.
 
 ## Features
 
-- ✅ **Transparent Scoring** - All formulas and calculations are visible and auditable
-- ✅ **Unlimited Scans** - No monthly limits like commercial tools 
-- ✅ **Complete Audit Trail** - Track improvements over time with version control
-- ✅ **Multiple Formats** - Support for Markdown, DOCX, PDF, and plain text resumes
-- ✅ **Actionable Recommendations** - Prioritized suggestions with expected score impact
-- ✅ **Configurable Weights** - Customize scoring for different job levels (entry, mid, senior, executive)
+- **Transparent Scoring** — All formulas and calculations are visible and auditable
+- **Unlimited Scans** — No monthly limits like commercial tools
+- **Complete Audit Trail** — Track improvements over time with full version control
+- **Multiple Formats** — Markdown, DOCX, PDF, and plain text resumes
+- **Actionable Recommendations** — Prioritized suggestions with expected score impact
+- **Configurable Weights** — Customize scoring for different job levels (entry, mid, senior, executive)
 
 ## Quick Start
 
 ### Installation
 
 ```bash
-# Install from PyPI (coming soon)
+# Install from PyPI
 pip install open-ats-scanner
 
 # Or install from source
@@ -27,10 +32,10 @@ cd open-ats
 pip install -e .
 ```
 
-### Basic Usage
+### Usage
 
 ```bash
-# Run a single scan
+# Scan a single resume
 open-ats scan \
     --resume resume.md \
     --job-description jd.txt \
@@ -49,77 +54,25 @@ open-ats compare \
     --output improvement_report.html
 ```
 
-## Project Status
-
-**Phase 1 (MVP) - In Development**
-
-- [x] Resume parsing — Markdown (Sprint 1)
-- [x] Resume parsing — DOCX, TXT (Sprint 2)
-- [x] Resume parsing — PDF (Sprint 3) — FR-1 complete
-- [x] Job description parsing (Sprint 4) — FR-2 complete
-- [x] Keyword matching analysis (Sprint 5) — FR-3 complete
-- [x] ATS compatibility scoring 0–100 (Sprint 5; 3-category in Sprint 7; full PRD in Sprint 8)
-- [x] JSON reports (Sprint 5) — HTML in Sprint 9
-- [x] CLI interface (Sprint 5, `scan` command) — `compare`/`batch` in Sprint 10
-- [x] Formatting validation (Sprint 7) — FR-5 complete
-- [x] Content quality analysis (Sprint 7) — FR-6 complete
-- [ ] Quantification rate calculation (Sprint 6, deferred)
-- [ ] Basic audit trail (Sprint 10)
-
-**Phase 2 (Enhancement) - Planned**
-
-- [ ] Advanced NLP (semantic matching, synonym detection)
-- [ ] Section-level analysis
-- [ ] Industry-specific keyword databases
-- [ ] Role-level customization
-- [ ] Visual audit trail (charts)
-- [ ] Web interface
-- [ ] PDF report generation
-
-## Documentation
-
-- [Product Requirements Document (PRD)](docs/PRD.md) - Complete specifications
-- [Scoring System](docs/scoring-system.md) - Transparent formulas and calculations
-- [Testing Strategy](docs/testing-strategy.md) - Comprehensive test plans
-- [API Reference](docs/api-reference.md) - Developer documentation
-
-## Project Structure
-
-```
-open-ats/
-├── src/open_ats/          # Python package (import root: `open_ats`)
-│   ├── parsers/           # Resume and JD parsing (Markdown, DOCX, PDF, TXT)
-│   ├── analyzers/         # Keyword, quantification, formatting, content quality
-│   ├── scoring/           # Transparent scoring engine
-│   ├── reporting/         # JSON / HTML / PDF report generation
-│   ├── audit_trail/       # Scan history, version control, improvement tracking
-│   ├── cli/               # `open-ats` command-line entry point
-│   └── data/              # Bundled word lists and presets
-├── tests/
-│   ├── unit/              # Unit tests (≥80% coverage target)
-│   ├── integration/       # Integration tests across modules
-│   ├── e2e/               # End-to-end CLI tests
-│   ├── validation/        # Golden cases, idempotency, performance, correlation
-│   └── fixtures/          # Sample resumes and job descriptions
-├── docs/                  # PRD, scoring system, testing strategy, API reference
-├── keyword_databases/     # Industry-specific keyword lists (YAML)
-└── examples/              # Example workflows and sample data (added in Sprint 12)
-```
-
 ## How It Works
 
-### 1. Parse Resume & Job Description
+```
+Resume Input → Parser → Keyword Matcher → Scorer → Report Generator
+                (DOCX/PDF/MD/TXT)  (NLP-based)    (transparent)   (HTML/JSON)
+```
 
-Extract structured data from resume and job description using NLP techniques.
+### Scoring Pipeline
 
-### 2. Analyze & Match
+**1. Parse Resume & Job Description**
+Extract structured data using NLP techniques with format detection.
 
+**2. Analyze & Match**
 - **Keyword Matching:** Hard skills, soft skills, action verbs, industry keywords
-- **Quantification:** Identify achievements with metrics ($1.4B, 15%, 10 years)
+- **Quantification:** Identify achievements with metrics (15%, $1.4B, 10 years)
 - **Formatting:** Detect ATS-breaking elements (tables, special characters)
-- **Content Quality:** Check for weak verbs, passive voice, hedging language
+- **Content Quality:** Weak verbs, passive voice, hedging language detection
 
-### 3. Score with Transparent Formulas
+**3. Score with Transparent Formulas**
 
 ```
 Overall Score = Σ(Category Score × Weight)
@@ -129,29 +82,18 @@ Default Weights:
   Quantification:   20%
   Formatting:       20%
   Content Quality:  20%
-
-Each formula is documented and auditable.
 ```
 
-### 4. Generate Report & Track Improvement
+Each formula is documented and auditable. See [Scoring System](docs/scoring-system.md) for full details.
 
+**4. Generate Report & Track Improvement**
 - Detailed HTML/JSON reports with actionable recommendations
 - Complete audit trail showing score progression
 - Before/after comparisons proving improvement
 
-## Scoring Correlation
-
-Target: **90%+ correlation** with commercial tools like JobScan
-
-Validation methodology:
-- 100 resume/JD pair test dataset
-- Parallel scoring against JobScan
-- Statistical analysis (Pearson correlation)
-- Continuous refinement of weights and algorithms
-
 ## Why Open ATS?
 
-### Commercial Tool Limitations
+### Commercial Tool Comparison
 
 | Feature | JobScan | Resume Worded | Open ATS |
 |---------|---------|---------------|----------|
@@ -161,13 +103,51 @@ Validation methodology:
 | Customization | ❌ Fixed | ❌ Fixed | ✅ Configurable |
 | Cost | $50-90/mo | $49/mo | ✅ Free |
 
-### Transparent Scoring
+### Philosophy
 
-All formulas, weights, and calculations are documented and visible in reports. No black-box algorithms.
+- **Transparent:** All algorithms visible. No black boxes.
+- **Unlimited:** Iterate freely without subscription limits.
+- **Open:** Community-driven development, MIT licensed.
 
-### Proof of Improvement
+## Project Structure
 
-Complete version control and audit trails show exactly how your resume improved over time, with effectiveness metrics for each recommendation.
+```
+open-ats/
+├── src/open_ats/          # Main package
+│   ├── parsers/           # Resume & JD parsing
+│   ├── analyzers/         # Keyword, quantification, formatting, quality
+│   ├── scoring/           # Transparent scoring engine
+│   ├── reporting/         # HTML/JSON report generation
+│   ├── audit_trail/       # Scan history and improvement tracking
+│   ├── cli/               # Command-line interface
+│   └── data/              # Bundled word lists and presets
+├── tests/
+│   ├── unit/              # Unit tests (80%+ coverage target)
+│   ├── integration/       # Cross-module integration tests
+│   ├── e2e/               # End-to-end CLI tests
+│   └── fixtures/          # Sample resumes and job descriptions
+├── docs/                  # PRD, scoring, testing, API reference
+├── keyword_databases/     # Industry-specific keyword lists (YAML)
+└── examples/              # Example workflows and sample data
+```
+
+## Documentation
+
+- **[Product Requirements Document](docs/PRD.md)** — Complete specifications and feature roadmap
+- **[Scoring System](docs/scoring-system.md)** — Transparent formulas and calculations
+- **[API Reference](docs/api-reference.md)** — Developer documentation
+- **[Testing Strategy](docs/testing-strategy.md)** — Test plans and validation methodology
+- **[Contributing Guide](CONTRIBUTING.md)** — How to contribute
+
+## Validation & Correlation
+
+**Target:** 90%+ correlation with JobScan on standard resume/JD pairs.
+
+**Methodology:**
+- 100 resume/JD pair test dataset
+- Parallel scoring against JobScan
+- Pearson correlation analysis
+- Continuous refinement of weights
 
 ## Contributing
 
@@ -177,50 +157,24 @@ Areas where we need help:
 - Keyword database expansion (industry-specific terms)
 - Resume parsing edge cases
 - Scoring weight validation
-- Documentation improvements
 - Test coverage expansion
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
-
-## Roadmap
-
-### Q2 2026
-- ✅ Complete PRD and specifications
-- [ ] MVP implementation (CLI + core scoring)
-- [ ] Validation testing (90%+ correlation target)
-- [ ] Beta release
-
-### Q3 2026
-- [ ] Advanced NLP features
-- [ ] Web interface
-- [ ] Industry-specific keyword databases
-- [ ] V1.0 release
-
-### Q4 2026
-- [ ] API for third-party integrations
-- [ ] Multi-language support
-- [ ] Machine learning scoring optimization
+MIT — see [LICENSE](LICENSE)
 
 ## Support
 
-- [Documentation](docs/)
 - [GitHub Issues](https://github.com/jlynshue/open-ats/issues)
-- [Discussions](https://github.com/jlynshue/open-ats/discussions)
-
-## Credits
-
-Built by developers who were frustrated with expensive, opaque commercial ATS scanners. Inspired by the need for transparency and unlimited iteration during job searches.
-
-## Acknowledgments
-
-- JobScan, Resume Worded, Targeted Resume for establishing the category
-- Open-source NLP libraries: spaCy, NLTK
-- The job-seeking community for feedback and testing
+- [GitHub Discussions](https://github.com/jlynshue/open-ats/discussions)
+- [Documentation](docs/)
 
 ---
 
-**Status:** 🚧 Early Development - PRD Complete, Implementation Starting
+## Author
 
-**Last Updated:** 2026-05-08
+**[Jonathan Lyn-Shue](https://jonathanlynshue.com)** — Fractional CIO/CTO | Data & AI Executive
+
+Open ATS was built to solve a real problem: expensive, opaque commercial ATS scanners during job searches. It demonstrates principles I believe in across all technology: transparency, unlimited access, and user control.
+
+**Last Updated:** 2026-06-11
