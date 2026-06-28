@@ -3,7 +3,6 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/downloads/)
 [![MIT License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Tests](https://img.shields.io/badge/tests-passing-brightgreen)](tests/)
-[![PyPI](https://img.shields.io/badge/pypi-open--ats--scanner-blue)](https://pypi.org/project/open-ats-scanner/)
 
 **Transparent, Unlimited, Open-Source ATS Resume Scanning Tool**
 
@@ -23,8 +22,8 @@ A comprehensive resume scanner that emulates commercial ATS tools while providin
 ### Installation
 
 ```bash
-# Install from PyPI
-pip install open-ats-scanner
+# Install directly from GitHub
+pip install git+https://github.com/jlynshue/open-ats.git
 
 # Or install from source
 git clone https://github.com/jlynshue/open-ats.git
@@ -32,22 +31,34 @@ cd open-ats
 pip install -e .
 ```
 
-### Usage
+### Basic Usage
 
 ```bash
-# Scan a single resume
+# Scan a single resume (all formats: md, docx, pdf, txt)
+open-ats scan \
+    --resume resume.md \
+    --job-description jd.txt \
+    --output report.json
+```
+
+### Planned CLI Commands (Coming Soon)
+
+These commands describe the planned CLI capabilities and will be available in future sprints:
+
+```bash
+# Planned (Sprint 9): HTML report output
 open-ats scan \
     --resume resume.md \
     --job-description jd.txt \
     --output report.html
 
-# Batch scan multiple resumes
+# Planned (Sprint 10): batch scan multiple resumes
 open-ats batch \
     --resume-dir resumes/ \
     --job-description jd.txt \
     --output-dir reports/
 
-# Compare two scans to track improvement
+# Planned (Sprint 10): compare two scans to track improvement
 open-ats compare \
     --from-scan scan_id_1 \
     --to-scan scan_id_2 \
