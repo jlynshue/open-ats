@@ -2,7 +2,7 @@
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/downloads/)
 [![MIT License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![Tests](https://img.shields.io/badge/tests-passing-brightgreen)](tests/)
+[![CI](https://github.com/jlynshue/open-ats/actions/workflows/ci.yml/badge.svg)](https://github.com/jlynshue/open-ats/actions/workflows/ci.yml)
 
 **Transparent, Unlimited, Open-Source ATS Resume Scanning Tool**
 
@@ -12,7 +12,7 @@ A comprehensive resume scanner that emulates commercial ATS tools while providin
 
 - **Transparent Scoring** — All formulas and calculations are visible and auditable
 - **Unlimited Scans** — No monthly limits like commercial tools
-- **Complete Audit Trail** — Track improvements over time with full version control
+- **Complete Formula Audit** — Every scan emits a step-by-step audit of how the score was computed (cross-scan improvement tracking is planned)
 - **Multiple Formats** — Markdown, DOCX, PDF, and plain text resumes
 - **Actionable Recommendations** — Prioritized suggestions with expected score impact
 - **Configurable Weights** — Customize scoring for different job levels (entry, mid, senior, executive)
@@ -180,7 +180,7 @@ Scanned resume.md against backend-engineer-jd.txt: score = 72.25 (good). Wrote r
 
 ```
 Resume Input → Parser → Keyword Matcher → Scorer → Report Generator
-                (DOCX/PDF/MD/TXT)  (NLP-based)    (transparent)   (HTML/JSON)
+                (DOCX/PDF/MD/TXT)  (NLP-based)    (transparent)   (JSON; HTML planned)
 ```
 
 ### Scoring Pipeline
@@ -190,9 +190,9 @@ Extract structured data using NLP techniques with format detection.
 
 **2. Analyze & Match**
 - **Keyword Matching:** Hard skills, soft skills, action verbs, industry keywords
-- **Quantification:** Identify achievements with metrics (15%, $1.4B, 10 years)
 - **Formatting:** Detect ATS-breaking elements (tables, special characters)
 - **Content Quality:** Weak verbs, passive voice, hedging language detection
+- **Quantification (planned):** Identify achievements with metrics (15%, $1.4B, 10 years)
 
 **3. Score with Transparent Formulas**
 
@@ -200,18 +200,17 @@ Extract structured data using NLP techniques with format detection.
 Overall Score = Σ(Category Score × Weight)
 
 Default Weights:
-  Keyword Match:    40%
-  Quantification:   20%
-  Formatting:       20%
-  Content Quality:  20%
+  Keyword Match:    50%
+  Formatting:       25%
+  Content Quality:  25%
 ```
 
 Each formula is documented and auditable. See [Scoring System](docs/scoring-system.md) for full details.
 
 **4. Generate Report & Track Improvement**
-- Detailed HTML/JSON reports with actionable recommendations
-- Complete audit trail showing score progression
-- Before/after comparisons proving improvement
+- Detailed JSON reports with a complete formula audit (HTML reports planned)
+- Audit trail showing score progression (planned)
+- Before/after comparisons proving improvement (planned)
 
 ## Why Open ATS?
 
@@ -223,7 +222,8 @@ Commercial ATS scanners charge $50-90/month for a black box that gives you a sco
 |---------|---------|---------------|----------|
 | Free scans/month | 5 | 2-3 | ∞ Unlimited |
 | Scoring transparency | ❌ Black box | ❌ Black box | ✅ Open formulas |
-| Audit trail | ⚠️ Limited | ⚠️ Limited | ✅ Complete |
+| Per-scan formula audit | ❌ None | ❌ None | ✅ Complete |
+| Cross-scan history / improvement tracking | ⚠️ Limited | ⚠️ Limited | 🔜 Planned |
 | Customization | ❌ Fixed | ❌ Fixed | ✅ Configurable |
 | Cost | $50-90/mo | $49/mo | ✅ Free |
 
@@ -263,11 +263,13 @@ open-ats/
 - **[Testing Strategy](docs/testing-strategy.md)** — Test plans and validation methodology
 - **[Contributing Guide](CONTRIBUTING.md)** — How to contribute
 
-## Validation & Correlation
+## Validation & Correlation (planned)
+
+> Status: not yet run. The figures below are a target and a proposed methodology, not measured results.
 
 **Target:** 90%+ correlation with JobScan on standard resume/JD pairs.
 
-**Methodology:**
+**Proposed methodology:**
 - 100 resume/JD pair test dataset
 - Parallel scoring against JobScan
 - Pearson correlation analysis
